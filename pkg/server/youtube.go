@@ -9,7 +9,7 @@ import (
 
 // YoutubeInfo ...
 func YoutubeInfo(w http.ResponseWriter, r *http.Request) {
-	songURL := r.URL.Query().Get("song_url")
+	songURL := r.URL.Query().Get("url")
 
 	if songURL == "" {
 		songURL = "https://www.youtube.com/watch?v=lgjY-lVtJZA"
