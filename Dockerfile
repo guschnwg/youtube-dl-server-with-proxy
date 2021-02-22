@@ -10,7 +10,6 @@ RUN make server
 FROM python:3.8-buster AS dist
 
 COPY --from=base /app/app.out /
-COPY --from=base /app/web /web
 
 RUN pip install youtube_dl
 
