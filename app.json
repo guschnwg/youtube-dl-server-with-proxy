@@ -1,0 +1,8 @@
+{
+    "name": "Youtube DL server with proxy",
+    "description": "The proxy is because the region here is the US and users from outside the US would get the US for US and it is geo blocked.",
+    "website": "https://github.com/guschnwg/youtube-alexa-skill",
+    "repository": "https://github.com/guschnwg/youtube-alexa-skill",
+    "success_url": "/",
+    "stack": "container"
+  }
