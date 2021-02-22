@@ -24,7 +24,7 @@ func YoutubeInfo(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		w.WriteHeader(500)
 		json.NewEncoder(w).Encode(map[string]interface{}{
-			"error": err.Error(),
+			"error": "Error running youtuble-dl query",
 		})
 		return
 	}
@@ -34,7 +34,7 @@ func YoutubeInfo(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		w.WriteHeader(500)
 		json.NewEncoder(w).Encode(map[string]interface{}{
-			"error": err.Error(),
+			"error": "Error unmarshaling",
 		})
 		return
 	}
