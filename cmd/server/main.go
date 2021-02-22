@@ -12,6 +12,9 @@ import (
 
 func main() {
 	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8000"
+	}
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(map[string]interface{}{
