@@ -46,7 +46,5 @@ func BindProxy() {
 		FlushInterval: -1,
 	}
 
-	http.HandleFunc("/videoplayback", func(w http.ResponseWriter, r *http.Request) {
-		proxy.ServeHTTP(w, r)
-	})
+	http.HandleFunc("/videoplayback", proxy.ServeHTTP)
 }
