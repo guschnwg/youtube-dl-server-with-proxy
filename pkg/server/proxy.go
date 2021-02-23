@@ -43,6 +43,7 @@ func BindProxy() {
 				Timeout: 50 * time.Second,
 			}).Dial,
 		},
+		FlushInterval: -1,
 	}
 
 	http.HandleFunc("/videoplayback", func(w http.ResponseWriter, r *http.Request) {
