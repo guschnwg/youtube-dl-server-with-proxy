@@ -21,7 +21,8 @@ func main() {
 			"results": "OI",
 		})
 	})
-	http.HandleFunc("/api/info", server.YoutubeInfo)
+	http.HandleFunc("/youtube/url", server.YoutubeInfo)
+	http.HandleFunc("/youtube/play", server.YoutubePlay)
 
 	server.BindProxy()
 
