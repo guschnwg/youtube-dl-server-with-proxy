@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"net/http"
+	"net/url"
 	"os/exec"
 )
 
@@ -29,7 +30,11 @@ func YoutubeInfo(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var songData map[string]json.RawMessage
+	var songData struct {
+		Formats []struct {
+			URL string `json:"url"`
+		} `json: "formats"`
+	}
 	err = json.Unmarshal(out.Bytes(), &songData)
 	if err != nil {
 		w.WriteHeader(500)
@@ -39,7 +44,18 @@ func YoutubeInfo(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	lengthFormats := len(songData.Formats)
+	bestFormat := songData.Formats[lengthFormats-1]
+
+	URL, _ := url.Parse(bestFormat.URL)
+	URL.RawQuery += "&host=https://" + URL.Host
+	URL.Host = "localhost:8000"
+	URL.Scheme = "http"
+
 	json.NewEncoder(w).Encode(map[string]interface{}{
-		"results": songData,
+		"results": map[string]string{
+			"proxy": URL.String(),
+			"url":   bestFormat.URL,
+		},
 	})
 }
