@@ -33,7 +33,7 @@ func YoutubeInfo(w http.ResponseWriter, r *http.Request) {
 	var songData struct {
 		Formats []struct {
 			URL string `json:"url"`
-		} `json: "formats"`
+		} `json:"formats"`
 	}
 	err = json.Unmarshal(out.Bytes(), &songData)
 	if err != nil {
@@ -49,8 +49,8 @@ func YoutubeInfo(w http.ResponseWriter, r *http.Request) {
 
 	URL, _ := url.Parse(bestFormat.URL)
 	URL.RawQuery += "&host=https://" + URL.Host
-	URL.Host = "localhost:8000"
-	URL.Scheme = "http"
+	URL.Host = "youtube-dl-alexa.herokuapp.com"
+	URL.Scheme = "https"
 
 	json.NewEncoder(w).Encode(map[string]interface{}{
 		"results": map[string]string{
